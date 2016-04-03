@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Outgoing list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Idoutgoing</th>
+                <th>Description</th>
+                <th>Value</th>
+                <th>Date</th>
+                <th>Note</th>
+                <th>Idaccount</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for outgoing in outgoings %}
+            <tr>
+                <td><a href="{{ path('outgoing_show', { 'id': outgoing.idOutgoing }) }}">{{ outgoing.idOutgoing }}</a></td>
+                <td>{{ outgoing.description }}</td>
+                <td>{{ outgoing.value }}</td>
+                <td>{% if outgoing.date %}{{ outgoing.date|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ outgoing.note }}</td>
+                <td>{{ outgoing.idAccount }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('outgoing_show', { 'id': outgoing.idOutgoing }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('outgoing_edit', { 'id': outgoing.idOutgoing }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('outgoing_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Outgoing</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Idoutgoing</th>
+                <td>{{ outgoing.idOutgoing }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ outgoing.description }}</td>
+            </tr>
+            <tr>
+                <th>Value</th>
+                <td>{{ outgoing.value }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{% if outgoing.date %}{{ outgoing.date|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Note</th>
+                <td>{{ outgoing.note }}</td>
+            </tr>
+            <tr>
+                <th>Idaccount</th>
+                <td>{{ outgoing.idAccount }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('outgoing_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('outgoing_edit', { 'id': outgoing.idOutgoing }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

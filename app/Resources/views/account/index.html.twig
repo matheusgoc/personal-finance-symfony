@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Account list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Idaccount</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for account in accounts %}
+            <tr>
+                <td><a href="{{ path('account_show', { 'id': account.idAccount }) }}">{{ account.idAccount }}</a></td>
+                <td>{{ account.name }}</td>
+                <td>{{ account.description }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('account_show', { 'id': account.idAccount }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('account_edit', { 'id': account.idAccount }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('account_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}
